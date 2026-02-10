@@ -11,10 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<UserDbContext>(
-    // I am using mysql pomelo package, so I need to use UseMySql method
-    options => options.UseMySql(
-        builder.Configuration.GetConnectionString("UserDatabase"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("UserDatabase"))
+    // I am using postgreSQL as my database, so I will use the UseNpgsql method to configure the DbContext
+    options => options.UseNpgsql(builder.Configuration.GetConnectionString("UserDatabase")
     ));
 
 
